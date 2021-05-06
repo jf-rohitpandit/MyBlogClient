@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Navbar from '../../componensts/navbar/Navbar';
 import classes from './Signup.module.css';
 
 const Signup = () => {
@@ -18,43 +19,47 @@ const Signup = () => {
 	};
 
 	return (
-		<div className={`container ` + classes.pageLook}>
-			<form className={classes.formLook} onSubmit={onSubmit}>
-				<h1>Signup</h1>
-				<hr />
-				<input
-					type='email'
-					placeholder='Enter your email'
-					className='form-control my-3'
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-					required
-				/>
-				<input
-					type='password'
-					placeholder='Enter your password'
-					className='form-control my-3'
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-					minLength={5}
-					required
-				/>
-				<input
-					type='password'
-					placeholder='Confirm your password'
-					className='form-control my-3'
-					value={confirmPassword}
-					onChange={(e) => setConfirmPassword(e.target.value)}
-					minLength={5}
-					required
-				/>
-				<button type='submit' className='btn btn-primary'>
-					Signup
-				</button>
-				<p className='my-2'>
-					New user? <Link to='#'>Register</Link> here!
-				</p>
-			</form>
+		<div className=''>
+			<Navbar />
+			<br />
+			<div className={`container ` + classes.pageLook}>
+				<form className={classes.formLook} onSubmit={onSubmit}>
+					<h1>Signup</h1>
+					<hr />
+					<input
+						type='email'
+						placeholder='Enter your email'
+						className='form-control my-3'
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+						required
+					/>
+					<input
+						type='password'
+						placeholder='Enter your password'
+						className='form-control my-3'
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
+						minLength={5}
+						required
+					/>
+					<input
+						type='password'
+						placeholder='Confirm your password'
+						className='form-control my-3'
+						value={confirmPassword}
+						onChange={(e) => setConfirmPassword(e.target.value)}
+						minLength={5}
+						required
+					/>
+					<button type='submit' className='btn btn-primary'>
+						Signup
+					</button>
+					<p className='my-2'>
+						Already Registered? <Link to='/login'>Login</Link> here!
+					</p>
+				</form>
+			</div>
 		</div>
 	);
 };
