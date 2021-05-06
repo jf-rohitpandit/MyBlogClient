@@ -8,6 +8,7 @@ import {
 	USER_LOGIN_SUCCESS,
 	USER_LOGOUT,
 } from '../constanst/authConstant';
+import { deleteToken, saveToken } from '../localState';
 
 export const registerUser = (userData) => async (dispatch) => {
 	try {
@@ -22,6 +23,7 @@ export const registerUser = (userData) => async (dispatch) => {
 			type: USER_REGISTER_SUCCESS,
 			payload: result.data.token,
 		});
+		saveToken(result.data.token);
 	} catch (error) {
 		dispatch({ type: USER_REGISTER_FAIL, error: error.response.data.message });
 	}
@@ -37,6 +39,7 @@ export const loginUser = (userData) => async (dispatch) => {
 		});
 
 		dispatch({ type: USER_LOGIN_SUCCESS, payload: result.data.token });
+		saveToken(result.data.token);
 	} catch (error) {
 		dispatch({ type: USER_LOGIN_FAIL, error: error.response.data.message });
 	}
@@ -44,4 +47,5 @@ export const loginUser = (userData) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
 	dispatch({ type: USER_LOGOUT });
+	deleteToken();
 };
