@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 import classes from './Login.module.css';
 import Navbar from '../../componensts/navbar/Navbar';
+import { loginUser } from '../../actions/authAction';
 
-const Login = () => {
+const Login = (props) => {
+	const history = useHistory();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const onSubmit = (e) => {
+	useEffect(() => {
+		if (props.success) {
+			history.push('/');
+			return null;
+		}
+	}, [props]);
+
+	const onSubmit = async (e) => {
 		e.preventDefault();
 
 		console.log(email, password);
+		await props.login({ email, password });
 	};
 
 	return (
@@ -50,4 +61,15 @@ const Login = () => {
 	);
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+	token: state.auth.token,
+	loading: state.auth.loading,
+	error: state.auth.error,
+	success: state.auth.success,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	login: (userData) => dispatch(loginUser(userData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

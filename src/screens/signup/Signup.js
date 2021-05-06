@@ -1,21 +1,32 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Navbar from '../../componensts/navbar/Navbar';
 import classes from './Signup.module.css';
+import { registerUser } from '../../actions/authAction';
 
-const Signup = () => {
+const Signup = (props) => {
+	const history = useHistory();
+
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [confirmPassword, setConfirmPassword] = useState('');
 
-	const onSubmit = (e) => {
+	useEffect(() => {
+		if (props.success) {
+			history.push('/');
+			return null;
+		}
+	}, [props]);
+
+	const onSubmit = async (e) => {
 		e.preventDefault();
 
 		if (password !== confirmPassword) {
 			console.log('passwords not matched');
 		}
 
-		console.log(email, password);
+		await props.register({ email, password });
 	};
 
 	return (
@@ -64,4 +75,15 @@ const Signup = () => {
 	);
 };
 
-export default Signup;
+const mapStateToProps = (state) => ({
+	token: state.auth.token,
+	loading: state.auth.loading,
+	error: state.auth.error,
+	success: state.auth.success,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+	register: (userData) => dispatch(registerUser(userData)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
