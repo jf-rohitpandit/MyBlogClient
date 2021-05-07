@@ -11,7 +11,7 @@ const Login = (props) => {
 	const [password, setPassword] = useState('');
 
 	useEffect(() => {
-		if (props.success) {
+		if (props.success && props.token) {
 			history.push('/');
 			return null;
 		}
