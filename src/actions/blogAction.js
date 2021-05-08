@@ -9,6 +9,9 @@ import {
 	BLOG_POST_FAIL,
 	BLOG_POST_REQUEST,
 	BLOG_POST_SUCCESS,
+	BLOG_GET_REQUEST,
+	BLOG_GET_SUCCESS,
+	BLOG_GET_FAIL,
 } from '../constanst/blogConstant';
 
 export const postBlog = (blogData) => async (dispatch) => {
@@ -49,5 +52,18 @@ export const getTrendingBlogs = () => async (dispatch) => {
 		dispatch({ type: BLOG_TRENDING_SUCCESS, payload: result.data.posts });
 	} catch (error) {
 		dispatch({ type: BLOG_TRENDING_FAIL, error: error.response.data.message });
+	}
+};
+
+export const getBlog = (postId) => async (dispatch) => {
+	try {
+		dispatch({ type: BLOG_GET_REQUEST });
+
+		//axios request
+		const result = await axios.get(`http://localhost:5000/blog/post/${postId}`);
+
+		dispatch({ type: BLOG_GET_SUCCESS, payload: result.data.post });
+	} catch (error) {
+		dispatch({ type: BLOG_GET_FAIL, error: error.response.data.message });
 	}
 };

@@ -8,6 +8,7 @@ import Signup from './screens/signup/Signup';
 import Trending from './screens/trending/Trending';
 import Write from './screens/write/Write';
 import { connect } from 'react-redux';
+import Blog from './screens/blog/Blog';
 
 function App(props) {
 	if (props.token) {
@@ -23,6 +24,7 @@ function App(props) {
 					<Route exact path='/write' component={Write} />
 					<Route exact path='/trending' component={Trending} />
 					<Route exact path='/' component={Home} />
+					<Route exact path='/post/:id' component={Blog} />
 				</Switch>
 			</Router>
 		</div>

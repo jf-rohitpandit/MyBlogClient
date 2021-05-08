@@ -1,0 +1,25 @@
+.content {
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 0.5rem;
+	margin: auto;
+}
+
+.info {
+	border: 1px solid #ccc;
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	/* padding: 1rem; */
+	border-radius: 0.5rem;
+}
+
+.like {
+	padding: 1rem;
+	color: red;
+}
+
+.comment {
+	padding: 1rem;
+	color: blue;
+}

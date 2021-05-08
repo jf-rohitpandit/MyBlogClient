@@ -8,6 +8,9 @@ import {
 	BLOG_POST_FAIL,
 	BLOG_POST_REQUEST,
 	BLOG_POST_SUCCESS,
+	BLOG_GET_FAIL,
+	BLOG_GET_REQUEST,
+	BLOG_GET_SUCCESS,
 } from '../constanst/blogConstant';
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
 	error: null,
 	loading: false,
 	posts: [],
+	post: null,
 };
 
 const blogReducer = (state = initialState, action) => {
@@ -88,6 +92,35 @@ const blogReducer = (state = initialState, action) => {
 				error: action.error,
 			};
 		}
+
+		//getting a single blog
+		case BLOG_GET_REQUEST: {
+			return {
+				...state,
+				loading: true,
+				post: null,
+				error: null,
+				success: false,
+			};
+		}
+
+		case BLOG_GET_SUCCESS: {
+			return {
+				...state,
+				loading: false,
+				post: action.payload,
+				success: true,
+			};
+		}
+
+		case BLOG_GET_FAIL: {
+			return {
+				...state,
+				loading: false,
+				error: action.error,
+			};
+		}
+
 		default:
 			return state;
 	}
