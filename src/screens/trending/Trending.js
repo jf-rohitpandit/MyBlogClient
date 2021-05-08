@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Navbar from '../../componensts/navbar/Navbar';
 import classes from './Trending.module.css';
 import { getTrendingBlogs } from '../../actions/blogAction';
 
 const Trending = (props) => {
+	const history = useHistory();
+
 	const [mounted, setMounted] = useState(false);
 	const [posts, setPosts] = useState(null);
 
@@ -19,6 +22,12 @@ const Trending = (props) => {
 		setPosts(props.posts);
 	}, [props.posts]);
 
+	const openBlog = (id) => {
+		console.log(id);
+		history.push(`/post/${id}`);
+		return null;
+	};
+
 	return (
 		<div>
 			<Navbar />
@@ -29,7 +38,10 @@ const Trending = (props) => {
 
 				{posts &&
 					posts.map((post) => (
-						<div className={classes.content} key={post.id}>
+						<div
+							className={classes.content}
+							key={post._id}
+							onClick={() => openBlog(post._id)}>
 							<h4>{post.title}</h4>
 						</div>
 					))}
