@@ -1,13 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { postBlog } from '../../actions/blogAction';
 import Navbar from '../../componensts/navbar/Navbar';
 
 const Write = (props) => {
+	const history = useHistory();
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		if (!props.token && mounted === false) {
+			setMounted(true);
+		}
+		// eslint-disable-next-line
+	}, []);
+
+	if (mounted === false && !props.token) {
+		history.push('/login');
+		return null;
+	}
 
 	const onSubmit = (e) => {
 		e.preventDefault();
