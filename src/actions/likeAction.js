@@ -15,7 +15,9 @@ export const getLikes = (postId) => async (dispatch) => {
 
 		//axios request
 
-		const result = await axios.get(`http://localhost:5000/blog/like/${postId}`);
+		const result = await axios.get(
+			`https://safe-sands-61885.herokuapp.com/blog/like/${postId}`
+		);
 
 		dispatch({ type: LIKE_GET_SUCCESS, payload: result.data });
 	} catch (error) {
@@ -32,7 +34,7 @@ export const postLike = (postId) => async (dispatch) => {
 
 		//axios request
 		const result = await axios.post(
-			`http://localhost:5000/blog/like/${postId}`
+			`https://safe-sands-61885.herokuapp.com/blog/like/${postId}`
 		);
 
 		dispatch({ type: LIKE_POST_SUCCESS, payload: result.data });

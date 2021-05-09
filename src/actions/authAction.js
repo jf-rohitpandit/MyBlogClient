@@ -15,10 +15,13 @@ export const registerUser = (userData) => async (dispatch) => {
 	try {
 		dispatch({ type: USER_REGISTER_REQUEST });
 
-		const result = await axios.post('http://localhost:5000/auth/signup', {
-			email: userData.email,
-			password: userData.password,
-		});
+		const result = await axios.post(
+			'https://safe-sands-61885.herokuapp.com/auth/signup',
+			{
+				email: userData.email,
+				password: userData.password,
+			}
+		);
 
 		dispatch({
 			type: USER_REGISTER_SUCCESS,
@@ -37,10 +40,13 @@ export const loginUser = (userData) => async (dispatch) => {
 	try {
 		dispatch({ type: USER_LOGIN_REQUEST });
 
-		const result = await axios.post('http://localhost:5000/auth/login', {
-			email: userData.email,
-			password: userData.password,
-		});
+		const result = await axios.post(
+			'https://safe-sands-61885.herokuapp.com/auth/login',
+			{
+				email: userData.email,
+				password: userData.password,
+			}
+		);
 
 		dispatch({ type: USER_LOGIN_SUCCESS, payload: result.data.token });
 		saveToken(result.data.token);

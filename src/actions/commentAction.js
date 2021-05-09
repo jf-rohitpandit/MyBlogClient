@@ -15,7 +15,7 @@ export const getComments = (postId) => async (dispatch) => {
 
 		//axios request
 		const result = await axios.get(
-			`http://localhost:5000/blog/comment/${postId}`
+			`https://safe-sands-61885.herokuapp.com/blog/comment/${postId}`
 		);
 
 		dispatch({ type: COMMENT_GET_SUCCESS, payload: result.data.commentList });
@@ -33,7 +33,7 @@ export const postComment = (postId, text) => async (dispatch) => {
 
 		//axios request
 		const result = await axios.post(
-			`http://localhost:5000/blog/comment/${postId}`,
+			`https://safe-sands-61885.herokuapp.com/blog/comment/${postId}`,
 			{ text }
 		);
 

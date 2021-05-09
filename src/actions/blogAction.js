@@ -19,7 +19,7 @@ export const postBlog = (blogData) => async (dispatch) => {
 	try {
 		dispatch({ type: BLOG_POST_REQUEST });
 
-		await axios.post('http://localhost:5000/blog', {
+		await axios.post('https://safe-sands-61885.herokuapp.com/blog', {
 			title: blogData.title,
 			content: blogData.content,
 		});
@@ -38,7 +38,9 @@ export const getHomeBlogs = () => async (dispatch) => {
 		dispatch({ type: BLOG_HOME_REQUEST });
 
 		//axios request
-		const result = await axios.get('http://localhost:5000/blog');
+		const result = await axios.get(
+			'https://safe-sands-61885.herokuapp.com/blog'
+		);
 
 		dispatch({ type: BLOG_HOME_SUCCESS, payload: result.data.posts });
 	} catch (error) {
@@ -54,7 +56,9 @@ export const getTrendingBlogs = () => async (dispatch) => {
 		dispatch({ type: BLOG_TRENDING_REQUEST });
 
 		//axios request
-		const result = await axios.get('http://localhost:5000/blog/trending');
+		const result = await axios.get(
+			'https://safe-sands-61885.herokuapp.com/blog/trending'
+		);
 
 		dispatch({ type: BLOG_TRENDING_SUCCESS, payload: result.data.posts });
 	} catch (error) {
@@ -70,7 +74,9 @@ export const getBlog = (postId) => async (dispatch) => {
 		dispatch({ type: BLOG_GET_REQUEST });
 
 		//axios request
-		const result = await axios.get(`http://localhost:5000/blog/post/${postId}`);
+		const result = await axios.get(
+			`https://safe-sands-61885.herokuapp.com/blog/post/${postId}`
+		);
 
 		dispatch({ type: BLOG_GET_SUCCESS, payload: result.data.post });
 	} catch (error) {
