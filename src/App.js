@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Redirect,
+	Route,
+	Switch,
+} from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Home from './screens/home/Home';
@@ -21,7 +26,19 @@ function App(props) {
 				<Switch>
 					<Route exact path='/login' component={Login} />
 					<Route exact path='/signup' component={Signup} />
-					<Route exact path='/write' component={Write} />
+					<Route
+						exact
+						path='/write'
+						render={(props) =>
+							props.token === true ? (
+								<Write />
+							) : (
+								<Redirect
+									to={{ pathname: '/login', state: { from: props.location } }}
+								/>
+							)
+						}
+					/>
 					<Route exact path='/trending' component={Trending} />
 					<Route exact path='/' component={Home} />
 					<Route exact path='/post/:id' component={Blog} />

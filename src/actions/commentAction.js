@@ -18,8 +18,6 @@ export const getComments = (postId) => async (dispatch) => {
 			`http://localhost:5000/blog/comment/${postId}`
 		);
 
-		console.log('action', result.data);
-
 		dispatch({ type: COMMENT_GET_SUCCESS, payload: result.data.commentList });
 	} catch (error) {
 		dispatch({ type: COMMENT_GET_FAIL, error: error.response.data.message });

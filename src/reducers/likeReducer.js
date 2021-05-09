@@ -15,7 +15,6 @@ const initialState = {
 };
 
 const likeReducer = (state = initialState, action) => {
-	console.log(action.payload);
 	switch (action.type) {
 		case LIKE_POST_REQUEST:
 		case LIKE_GET_REQUEST: {

@@ -16,6 +16,7 @@ const Home = (props) => {
 			props.getHomeBlogs();
 		}
 		setMounted(true);
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -23,7 +24,6 @@ const Home = (props) => {
 	}, [props.posts]);
 
 	const openBlog = (id) => {
-		console.log(id);
 		history.push(`/post/${id}`);
 		return null;
 	};

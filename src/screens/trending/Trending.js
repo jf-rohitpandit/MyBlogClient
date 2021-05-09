@@ -16,6 +16,7 @@ const Trending = (props) => {
 			props.getTrendingBlogs();
 		}
 		setMounted(true);
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -23,7 +24,6 @@ const Trending = (props) => {
 	}, [props.posts]);
 
 	const openBlog = (id) => {
-		console.log(id);
 		history.push(`/post/${id}`);
 		return null;
 	};

@@ -23,13 +23,15 @@ const Signup = (props) => {
 		if (props.error) {
 			toast.error(props.error);
 		}
+		// eslint-disable-next-line
 	}, [props]);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
 		if (password !== confirmPassword) {
-			console.log('passwords not matched');
+			toast.error('Passwords did not match');
+			return;
 		}
 
 		await props.register({ email, password });

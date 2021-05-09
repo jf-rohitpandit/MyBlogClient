@@ -19,13 +19,13 @@ const Blog = (props) => {
 
 	useEffect(() => {
 		if (post === null) {
-			console.log(id);
 			props.getBlog(id);
 			props.getLikes(id);
 			if (props.token) {
 				props.getComments(id);
 			}
 		}
+		// eslint-disable-next-line
 	}, []);
 
 	useEffect(() => {
@@ -38,7 +38,6 @@ const Blog = (props) => {
 
 	useEffect(() => {
 		setCommentList(props.commentList);
-		console.log(props);
 	}, [props.commentList]);
 
 	const onLike = () => {

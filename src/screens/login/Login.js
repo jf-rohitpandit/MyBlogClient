@@ -13,19 +13,19 @@ const Login = (props) => {
 	const [password, setPassword] = useState('');
 
 	useEffect(() => {
-		if (props.success && props.token) {
+		if (props.token) {
 			history.push('/');
 			return null;
 		}
 		if (props.error) {
 			toast.error(props.error);
 		}
+		// eslint-disable-next-line
 	}, [props]);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
 
-		console.log(email, password);
 		await props.login({ email, password });
 	};
 

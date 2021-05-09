@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { postBlog } from '../../actions/blogAction';
 import Navbar from '../../componensts/navbar/Navbar';
 
 const Write = (props) => {
-	const history = useHistory();
-	const [mounted, setMounted] = useState(false);
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
-
-	if (mounted === false && props.token === null) {
-		history.push('/login');
-		return null;
-	}
 
 	const onSubmit = (e) => {
 		e.preventDefault();
