@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../componensts/navbar/Navbar';
 import classes from './Blog.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { getBlog } from '../../actions/blogAction';
 import { getLikes, postLike } from '../../actions/likeAction';
 import { getComments, postComment } from '../../actions/commentAction';
@@ -42,12 +44,16 @@ const Blog = (props) => {
 	const onLike = () => {
 		if (props.token) {
 			props.postLike(id);
+		} else {
+			toast.error('you must login first!');
 		}
 	};
 
 	const onShowComments = () => {
 		if (props.token) {
 			setCommentActive((state) => !state);
+		} else {
+			toast.error('You must login first!');
 		}
 	};
 
@@ -56,12 +62,14 @@ const Blog = (props) => {
 
 		props.postComment(id, text);
 		setText('');
+		toast.success('Comment posted!');
 	};
 
 	return (
 		<div>
 			<Navbar />
 			<br />
+			<ToastContainer />
 			<div className='container'>
 				<div className={classes.content}>
 					<h2 className='text-center'>{post && post.title}</h2>

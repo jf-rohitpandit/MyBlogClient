@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../../componensts/navbar/Navbar';
 import classes from './Signup.module.css';
 import { registerUser } from '../../actions/authAction';
@@ -13,9 +15,13 @@ const Signup = (props) => {
 	const [confirmPassword, setConfirmPassword] = useState('');
 
 	useEffect(() => {
-		if (props.success) {
+		if (props.token && props.success) {
 			history.push('/');
 			return null;
+		}
+
+		if (props.error) {
+			toast.error(props.error);
 		}
 	}, [props]);
 
@@ -33,6 +39,7 @@ const Signup = (props) => {
 		<div className=''>
 			<Navbar />
 			<br />
+			<ToastContainer />
 			<div className={`container ` + classes.pageLook}>
 				<form className={classes.formLook} onSubmit={onSubmit}>
 					<h1>Signup</h1>

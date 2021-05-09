@@ -6,6 +6,7 @@ import {
 	USER_LOGIN_REQUEST,
 	USER_LOGIN_SUCCESS,
 	USER_LOGOUT,
+	CLEAR_AUTH_ERROR,
 } from '../constanst/authConstant';
 
 const initialState = {
@@ -49,6 +50,13 @@ const authReducer = (state = initialState, action) => {
 			return {
 				...state,
 				token: null,
+			};
+		}
+
+		case CLEAR_AUTH_ERROR: {
+			return {
+				...state,
+				error: null,
 			};
 		}
 

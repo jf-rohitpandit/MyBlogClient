@@ -7,6 +7,7 @@ import {
 	USER_LOGIN_REQUEST,
 	USER_LOGIN_SUCCESS,
 	USER_LOGOUT,
+	CLEAR_AUTH_ERROR,
 } from '../constanst/authConstant';
 import { deleteToken, saveToken } from '../localState';
 
@@ -26,6 +27,9 @@ export const registerUser = (userData) => async (dispatch) => {
 		saveToken(result.data.token);
 	} catch (error) {
 		dispatch({ type: USER_REGISTER_FAIL, error: error.response.data.message });
+		setTimeout(() => {
+			dispatch({ type: CLEAR_AUTH_ERROR });
+		}, 2000);
 	}
 };
 
@@ -42,6 +46,9 @@ export const loginUser = (userData) => async (dispatch) => {
 		saveToken(result.data.token);
 	} catch (error) {
 		dispatch({ type: USER_LOGIN_FAIL, error: error.response.data.message });
+		setTimeout(() => {
+			dispatch({ type: CLEAR_AUTH_ERROR });
+		}, 2000);
 	}
 };
 

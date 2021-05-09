@@ -5,3 +5,5 @@ export const LIKE_GET_FAIL = 'LIKE_GET_FAIL';
 export const LIKE_POST_REQUEST = 'LIKE_POST_REQUEST';
 export const LIKE_POST_SUCCESS = 'LIKE_POST_SUCCESS';
 export const LIKE_POST_FAIL = 'LIKE_POST_FAIL';
+
+export const CLEAR_LIKE_ERROR = 'CLEAR_LIKE_ERROR';

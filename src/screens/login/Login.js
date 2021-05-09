@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import classes from './Login.module.css';
 import Navbar from '../../componensts/navbar/Navbar';
 import { loginUser } from '../../actions/authAction';
@@ -15,6 +17,9 @@ const Login = (props) => {
 			history.push('/');
 			return null;
 		}
+		if (props.error) {
+			toast.error(props.error);
+		}
 	}, [props]);
 
 	const onSubmit = async (e) => {
@@ -28,6 +33,7 @@ const Login = (props) => {
 		<div>
 			<Navbar />
 			<br />
+			<ToastContainer />
 			<div className={`container ` + classes.pageLook}>
 				<form className={classes.formLook} onSubmit={onSubmit}>
 					<h1>Login</h1>

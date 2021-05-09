@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { postBlog } from '../../actions/blogAction';
 import Navbar from '../../componensts/navbar/Navbar';
 
@@ -25,12 +27,14 @@ const Write = (props) => {
 		props.postBlog({ title, content });
 		setTitle('');
 		setContent('');
+		toast.success('Posted successfully!');
 	};
 
 	return (
 		<div>
 			<Navbar />
 			<br />
+			<ToastContainer />
 			<div className='container'>
 				<h2 className='text-center'>Compose Blog</h2>
 				<hr />

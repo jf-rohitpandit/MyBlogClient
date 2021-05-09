@@ -12,6 +12,7 @@ import {
 	BLOG_GET_REQUEST,
 	BLOG_GET_SUCCESS,
 	BLOG_GET_FAIL,
+	CLEAR_BLOG_ERROR,
 } from '../constanst/blogConstant';
 
 export const postBlog = (blogData) => async (dispatch) => {
@@ -26,6 +27,9 @@ export const postBlog = (blogData) => async (dispatch) => {
 		dispatch({ type: BLOG_POST_SUCCESS });
 	} catch (error) {
 		dispatch({ type: BLOG_POST_FAIL, error: error.response.data.message });
+		setTimeout(() => {
+			dispatch({ type: CLEAR_BLOG_ERROR });
+		}, 2000);
 	}
 };
 
@@ -39,6 +43,9 @@ export const getHomeBlogs = () => async (dispatch) => {
 		dispatch({ type: BLOG_HOME_SUCCESS, payload: result.data.posts });
 	} catch (error) {
 		dispatch({ type: BLOG_HOME_FAIL, error: error.response.data.message });
+		setTimeout(() => {
+			dispatch({ type: CLEAR_BLOG_ERROR });
+		}, 2000);
 	}
 };
 
@@ -52,6 +59,9 @@ export const getTrendingBlogs = () => async (dispatch) => {
 		dispatch({ type: BLOG_TRENDING_SUCCESS, payload: result.data.posts });
 	} catch (error) {
 		dispatch({ type: BLOG_TRENDING_FAIL, error: error.response.data.message });
+		setTimeout(() => {
+			dispatch({ type: CLEAR_BLOG_ERROR });
+		}, 2000);
 	}
 };
 
@@ -65,5 +75,8 @@ export const getBlog = (postId) => async (dispatch) => {
 		dispatch({ type: BLOG_GET_SUCCESS, payload: result.data.post });
 	} catch (error) {
 		dispatch({ type: BLOG_GET_FAIL, error: error.response.data.message });
+		setTimeout(() => {
+			dispatch({ type: CLEAR_BLOG_ERROR });
+		}, 2000);
 	}
 };
