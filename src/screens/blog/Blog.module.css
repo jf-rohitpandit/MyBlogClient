@@ -10,8 +10,9 @@
 	display: flex;
 	width: 100%;
 	justify-content: space-around;
-	/* padding: 1rem; */
+	margin: 1rem 0;
 	border-radius: 0.5rem;
+	background-color: #ccc;
 }
 
 .like {
@@ -22,4 +23,32 @@
 .comment {
 	padding: 1rem;
 	color: blue;
+}
+
+.hide {
+	display: none;
+}
+
+.show {
+	display: block;
+	border: 1px solid #ccc;
+	padding: 1rem;
+	border-radius: 0.5rem;
+}
+
+.send {
+	padding: 1rem;
+	border-bottom: 1px solid #ccc;
+}
+
+.commentList {
+	margin: 1rem;
+}
+
+.singleComment {
+	margin: 2rem 0;
+}
+
+.commentName {
+	text-decoration: underline;
 }
