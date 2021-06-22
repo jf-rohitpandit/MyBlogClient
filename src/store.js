@@ -1,8 +1,10 @@
-import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
+import { configureStore } from '@reduxjs/toolkit';
 import { loadToken } from './localState';
-import rootReducer from './reducers/index';
+
+import authReducer from './reducers/authReducer';
+import blogReducer from './reducers/blogReducer';
+import commentReducer from './reducers/commentReducer';
+import likeReducer from './reducers/likeReducer';
 
 const preloadedState = {
 	auth: {
@@ -13,8 +15,14 @@ const preloadedState = {
 	},
 };
 
-const composedEnhancer = composeWithDevTools(applyMiddleware(thunk));
-
-const store = createStore(rootReducer, preloadedState, composedEnhancer);
+const store = configureStore({
+	reducer: {
+		auth: authReducer,
+		blog: blogReducer,
+		like: likeReducer,
+		comment: commentReducer,
+	},
+	preloadedState,
+});
 
 export default store;
