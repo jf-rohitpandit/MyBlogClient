@@ -16,7 +16,7 @@ export const registerUser = (userData) => async (dispatch) => {
 		dispatch({ type: USER_REGISTER_REQUEST });
 
 		const result = await axios.post(
-			'https://safe-sands-61885.herokuapp.com/auth/signup',
+			'https://myblogaapp.herokuapp.com/auth/signup',
 			{
 				email: userData.email,
 				password: userData.password,
@@ -41,7 +41,7 @@ export const loginUser = (userData) => async (dispatch) => {
 		dispatch({ type: USER_LOGIN_REQUEST });
 
 		const result = await axios.post(
-			'https://safe-sands-61885.herokuapp.com/auth/login',
+			'https://myblogaapp.herokuapp.com/auth/login',
 			{
 				email: userData.email,
 				password: userData.password,
